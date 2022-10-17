@@ -12,34 +12,33 @@
     include_once("../Fragmentos/Header/header.html");
 ?>
 <?php
-        echo "<h3>1. Realiza un programa utilizando bucles que muestre la siguiente figura</h3>";
-        $lineas= 3;
-        for ($i=1; $i <= $lineas; $i++) { 
-            for ($espacios=1; $espacios<=$lineas-$i; $espacios++) { 
-                echo "&nbsp;&nbsp";
+        echo "<h3>1. Realiza un programa utilizando bucles que muestre la siguiente figura.</h3>";
+        $filas= 4;
+        for ($i=1; $i <= $filas; $i++) { 
+            for ($blanco=1; $blanco<=$filas-$i; $blanco++) { 
+                echo"&nbsp;&nbsp";
             }
-            for ($asteriscos=1; $asteriscos <=($i*2)-1; $asteriscos++) {    
+            for ($asterisco=1; $asterisco <=($i*2)-1; $asterisco++) {    
                 echo "*";
             } 
             echo "<br>";
         }
-        echo "<h3>2. Realiza un programa utilizando bucles que muestre la siguiente figura</h3>";
-        $rombo=3;
-        
-        for ($i=1; $i <= $rombo ; $i++) { 
-            for ($espacios=1; $espacios<=$rombo-$i; $espacios++) { 
-                echo "&nbsp;&nbsp";
+        echo "<h3>2. Realiza un programa utilizando bucles que muestre la siguiente figura.</h3>";
+        $lineasrombo=3;
+        for ($i=1; $i <= $lineasrombo ; $i++) { 
+            for ($blanco=1; $blanco<=$lineasrombo-$i; $blanco++) { 
+                echo"&nbsp;&nbsp";
             }
-            for ($asteriscos=1; $asteriscos <=($i*2)-1; $asteriscos++) {    
+            for ($asterisco=1; $asterisco <=($i*2)-1; $asterisco++) {    
                 echo "*";
             } 
             echo "<br>";
         }
         for ($i=2; $i >= 1 ; $i--) { 
-            for ($espacios=1; $espacios<=3-$i; $espacios++) { 
+            for ($blanco=1; $blanco<=$lineasrombo-$i; $blanco++) { 
                 echo "&nbsp;&nbsp";
             }
-            for ($asteriscos=1; $asteriscos <=($i*2)-1; $asteriscos++) {    
+            for ($asterisco=1; $asterisco <=($i*2)-1; $asterisco++) {    
                 echo "*";
             } 
             echo "<br>";
@@ -48,12 +47,12 @@
         echo "<h3>3. Realiza un programa utilizando bucles que muestre la siguiente figura</h3>";
         
         
-        for ($i=1; $i <= $rombo ; $i++) { 
-            for ($espacios=1; $espacios<=$rombo-$i; $espacios++) { 
+        for ($i=1; $i <= $lineasrombo ; $i++) { 
+            for ($blanco=1; $blanco<=$lineasrombo-$i; $blanco++) { 
                 echo "&nbsp;&nbsp";
             }
-            for ($asteriscos=1; $asteriscos <=($i*2)-1; $asteriscos++) {    
-                if ($asteriscos==1 || $asteriscos==($i*2-1)) {
+            for ($asterisco=1; $asterisco <=($i*2)-1; $asterisco++) {    
+                if ($asterisco==1 || $asterisco==($i*2-1)) {
                     echo "*";
                 }else {
                     echo "&nbsp;&nbsp;";
@@ -62,11 +61,11 @@
             echo "<br>";
         }
         for ($i=2; $i >= 1 ; $i--) { 
-            for ($espacios=1; $espacios<=3-$i; $espacios++) { 
+            for ($blanco=1; $blanco<=3-$i; $blanco++) { 
                 echo "&nbsp;&nbsp";
             }
-            for ($asteriscos=1; $asteriscos <=($i*2)-1; $asteriscos++) {    
-                if ($asteriscos==1 || $asteriscos==($i*2-1)) {
+            for ($asterisco=1; $asterisco <=($i*2)-1; $asterisco++) {    
+                if ($asterisco==1 || $asterisco==($i*2-1)) {
                     echo "*";
                 }else {
                     echo "&nbsp;&nbsp;";
