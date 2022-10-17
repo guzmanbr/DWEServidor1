@@ -43,7 +43,7 @@
             foreach ($local as $partidos) {
                 foreach ($visitantes as $resultados) {
                     if ($local==$locales[$cont]) {
-                        echo "<td></td>";
+                        echo "<td></t>";
                     }
                 }
             }
