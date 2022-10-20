@@ -1,6 +1,14 @@
 body{
     background-color: black;
+    min-height: 1000px;
+    font-family: "helvetica neue";
+    background: url(fondo.png), #000000;
+    background: url(fondo.png),
+      -webkit-gradient(linear, right top, left top, from(#58080c), to(#000000));
+    background: url(fondo.png),
+      linear-gradient(to left, #2196f3, #009688);
 }
+
 header{
     margin: auto;
     height: fit-content;

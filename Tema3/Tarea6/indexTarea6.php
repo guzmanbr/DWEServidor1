@@ -84,11 +84,51 @@
                 } 
             ?>
         </table>
+        <hr><hr>
+        <table>
 
+            <tr>
+                <th>EQUIPOS</th>
+                <?php
+                    $estadisticas= array("Puntos","Goles a favor","Goles en contra");
+                    foreach($estadisticas as $local => $valor){
+                        echo "<th>$local</th>";
+                        array_push($estadisticas, $local);
+                    }
+                ?>
+            </tr>
+            <?php
 
+                $resultados = array();
+                $index =0;
+                foreach($liga as $local => $valor){
+                    echo "<tr sty><td> $local </td>";    
+                    $index =0;
+                        foreach($valor as $equipo => $resultado){
+                            $cont=0;
+                            if($local == $visitantes[$index]){
+                                echo "<td></td>";
+                            }  
+                            echo "<td>";
+                            foreach($resultado as $key => $res){
+                                if ($cont==0) {
+                                    echo "<span id='verde'>".$res."</span><br> ";
+                                }else if($cont==1){
+                                    echo "<span id='rojo'>".$res."</span> ";
+                                }else if($cont==2){
+                                    echo "<span id='amarillo'>".$res."</span> ";
+                                }else if($cont==3){
+                                    echo "<span id='naranja'>".$res."</span> ";
+                                }
+                                $cont++;
+                            }
+                            echo "</td>";
+                            $index++; 
+                        }
+                    echo "</tr>";  
+                } 
+            ?>
 
-            
-
-
+        </table>
     </body>
 </html>

@@ -1,0 +1,23 @@
+
+body{
+    color: whitesmoke;
+}
+h4{
+    margin: auto;
+}
+h5{
+    margin: auto;
+    margin-top: 8px;
+}
+
+div{
+
+    background-color:black ;
+    width: 85%;
+    margin-left: 7.5%;
+    text-align: center;
+    height: 50px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 10px;
+}
