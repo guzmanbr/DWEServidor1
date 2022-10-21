@@ -1,61 +1,68 @@
 body{
-    color: #bababa ;
-    background-color: rgba(0, 0, 0, 0.963);
-}
-h1{
-    text-align: center;
-    color: #bababa ;
-    font-size: 40px;
-}
-a{
-    text-decoration: none;
-    color: #bababa;
-    margin-bottom: 45px;
-    border: solid #bababa 1px;
-    padding: 3px;
-    border-radius: 4px;
-    background-color:#bababa46;
-    font-size: 20px;
-    width: 100px;
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: black;
+    min-height: 1000px;
+    font-family: "helvetica neue";
+    background: url(../img/fondo.png), #000000;
+    background: url(../img/fondo.png),
+      -webkit-gradient(linear, right top, left top, from(#58080c), to(#000000));
+    background: url(fondo.png),
+      linear-gradient(to left, #58080c, #000000);
 }
 
 header{
-    width: 60%;
-    height: 50px;
     margin: auto;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    
-}
-main{
-    background-color:rgba(255, 255, 240, 0.066) ;
-    width: 50%;
-    height: 335px;
-    margin: auto;
-    border-radius: 10px;
-    padding: 20px;
-
+    height: fit-content;
 }
 
-h4{
-    margin: auto;
+nav{
+  margin: auto;
+  display: flex;
+  background-color: whitesmoke;
+  opacity: 85%;
+  width: 80%;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-h5{
-    margin: auto;
-    margin-top: 8px;
+h1{
+  text-align: center;
+  color: whitesmoke;
+}
+
+h3{
+  text-align: center;
+  color: black;
+  padding: 3px;
+  border-radius: 6px;
+  border: solid black;
+  width: 70px;
+}
+a {
+  text-decoration: none;
+  margin-right: 40px;
+}
+
+a:nth-child(1){
+  margin-left: 50px;
 }
 
 footer{
-
-    width: 60%;
-    margin-left: 20%;
-    text-align: center;
-    height: 50px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 30px;
+  margin: auto;
+  display: flex;
+  background-color: whitesmoke;
+  opacity: 85%;
+  width: 80%;
+  height: 60px;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  margin-top: 400px;
+  text-align: center;
+}
+h4{
+  padding-right: 25px
+}
+h4:nth-child(2){
+  margin-right: 0px;
 }
