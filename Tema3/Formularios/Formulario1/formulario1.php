@@ -9,7 +9,7 @@
     <body>
         <h1>Formulario</h1>
 
-        <form action="./recibe.php" method="get" enctype="multipart/form-data">
+        <form action="./recibe.php" method="post" enctype="multipart/form-data">
             <p>
                 <label for="idNombre">Nombre: </label>
                 <input type="text" name="nombre" id="idNombre">
@@ -33,9 +33,9 @@
                 <b>Aignaturas</b>
                 <br>
                 <label for="idDWES">Desarrollo Web Servidor</label>
-                <input type="checkbox" name="asignaturas" id="idDWES" value="DWES">
+                <input type="checkbox" name="asignaturas[]" id="idDWES" value="DWES">
                 <label for="idDWEC">Desarrollo Web Cliente</label>
-                <input type="checkbox" name="asignaturas" id="idDWEC" value="DWEC">
+                <input type="checkbox" name="asignaturas[]" id="idDWEC" value="DWEC">
             </p>
             </br>
             <p>
@@ -56,9 +56,6 @@
             <p>
                 <b></b>
             </p>
-
-
-
             <input type="submit" value="Enviar">
         </form>
         

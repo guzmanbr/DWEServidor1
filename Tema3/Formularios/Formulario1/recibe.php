@@ -9,9 +9,9 @@
 <body>
     <h1>FormularioRecibido</h1>    
     <?php
-    echo "El nombre es: ".$_GET['nombre'];
+    echo "El nombre es: ".$_REQUEST['nombre'];
     echo "<br><br>";
-    echo "La contraseña es: ".$_GET['pass'];
+    echo "La contraseña es: ".$_REQUEST['pass'];
     echo "<br><br>";
 
     if (isset($_REQUEST['genero'])) {
@@ -23,33 +23,36 @@
 
     echo "Las asignaturas son: ";
 
-    if (isset($_REQUEST["asignaturas"])) {
+    if (isset($_REQUEST['asignaturas'])) {
+
         foreach ($_REQUEST["asignaturas"] as $key => $value) {
-            echo " aignatura: " .$value;
+            echo "<br> aignatura: " .$value;
         }
 
     }else{
-        echo "Ninguna";
+        echo "<br>Ninguna";
     }
-    echo "<br>";
+    echo "<br><br>";
     print_r($_REQUEST);
 
     echo "<br><br>";
 
-    echo "El curso es: ".$_GET['curso'];
+    echo "El curso es: ".$_REQUEST['curso'];
     echo "<br><br>";
 
     print_r($_FILES);
     echo "<br><br>";
 
     //print_r($_SERVER);
-    $ubicacion = "var/www/html";
+
+    $ubicacion = "/var/www/html/DWEServidor/Tema3/Formularios/Formulario1/";
     $nombreTemporal = basename($_FILES['fichero']['name']);
     $ubicacion =$ubicacion.$nombreTemporal;
+
     if (move_uploaded_file($_FILES['fichero']['tmp_name'],$ubicacion)) {
-        echo"El fichero se ha subido";
+        echo "<br> El fichero se ha subido";
     }else{
-        echo "Ha fallado";
+        echo "<br> Ha fallado";
     }
 ?>
 
