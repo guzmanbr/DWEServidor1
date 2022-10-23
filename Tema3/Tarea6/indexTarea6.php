@@ -9,11 +9,6 @@
     </head>
     <body>
 
-        <h1>Tarea 6</h1>
-        <hr>
-        <h2>Liga</h2>
-        <hr>
-
         <?php
 
             $liga = array(
@@ -40,6 +35,10 @@
 
             $visitantes =array();
         ?>
+        <h1>Tarea 6</h1>
+        <hr>
+        <h2>Liga</h2>
+
  
         <table>
             <tr>
@@ -57,7 +56,7 @@
                 $resultados = array();
                 $index =0;
                 foreach($liga as $local => $valor){
-                    echo "<tr sty><td> $local </td>";    
+                    echo "<tr><td> $local </td>";    
                     $index =0;
                         foreach($valor as $equipo => $resultado){
                             $cont=0;
@@ -84,108 +83,66 @@
                 } 
             ?>
         </table>
-        <hr><hr>
-        <table>
 
+        <h2>Clasificación</h2>
+
+        <table>
             <tr>
-                <th>EQUIPOS</th>
+                <th>Equipos</th>
+                <th>Puntos</th>
+                <th>Goles a favor</th>
+                <th>Goles en contra</th>
+            </tr>
+            <tr>
                 <?php
-                    $estadisticas= array("Puntos","Goles a favor","Goles en contra");
-                    foreach($estadisticas as $local => $valor){
-                        echo "<th>$local</th>";
-                        array_push($estadisticas, $local);
+                    $estadisticas = array(
+                        "Zamora" => array(
+                            "Puntos" => "0", "GolesFavor" => "0", "GolesContra" => "0"),
+                        "Salamanca" => array(
+                            "Puntos" => "0", "GolesFavor" => "0", "GolesContra" => "0"),
+                        "Avila" => array(
+                            "Puntos" => "0", "GolesFavor" => "0", "GolesContra" => "0" ),
+                        "Valladolid" => array(
+                            "Puntos" => "0", "GolesFavor" => "0", "GolesContra" => "0")
+                    );
+
+                    foreach($liga as $key => $valor){ 
+
+                        foreach($valor as $equipo => $resultado){
+
+
+                            $array= explode("-", $resultado["Resultado"]);
+
+                            if($array[0] > $array[1]){
+                                $estadisticas[$key]["Puntos"] += 3;
+
+                            }else if($array[0] < $array[1]){
+                                $estadisticas[$equipo]["Puntos"] += 3;
+
+                            }else if($array[0] == $array[1]){
+
+                                $estadisticas[$key]["Puntos"] += 1;
+                                $estadisticas[$equipo]["Puntos"] += 1;
+                            }
+
+                            $estadisticas[$key]["GolesFavor"] += $array[0];
+                            $estadisticas[$equipo]["GolesContra"] += $array[0];
+                            $estadisticas[$equipo]["GolesFavor"] += $array[1];   
+                            $estadisticas[$key]["GolesContra"] += $array[1];
+                        }
+                    }
+
+                    foreach($estadisticas as $key => $valor){
+                        echo "<tr>";
+                        echo "<td>$key</td>";
+                        foreach($valor as $clave => $value){
+                            echo "<td>$value</td>";
+                        }
+                        echo "</tr>";
                     }
                 ?>
             </tr>
-            <?php
-
-                $resultados = array();
-                $index =0;
-                foreach($liga as $local => $valor){
-                    echo "<tr sty><td> $local </td>";    
-                    $index =0;
-                        foreach($valor as $equipo => $resultado){
-                            $cont=0;
-                            if($local == $visitantes[$index]){
-                                echo "<td></td>";
-                            }  
-                            echo "<td>";
-                            foreach($resultado as $key => $res){
-                                if ($cont==0) {
-                                    echo "<span id='verde'>".$res."</span><br> ";
-                                }else if($cont==1){
-                                    echo "<span id='rojo'>".$res."</span> ";
-                                }else if($cont==2){
-                                    echo "<span id='amarillo'>".$res."</span> ";
-                                }else if($cont==3){
-                                    echo "<span id='naranja'>".$res."</span> ";
-                                }
-                                $cont++;
-                            }
-                            echo "</td>";
-                            $index++; 
-                        }
-                    echo "</tr>";  
-                } 
-            ?>
-
-<table border="1">
-        <tr>
-            <th>Equipos</th>
-            <th>Puntos</th>
-            <th>Goles a favor</th>
-            <th>Goles en contra</th>
-        </tr>
-        <tr>
-            <?php
-                $resultados = array(
-                    "Zamora" => array(
-                        "Puntos" => "0", "GF" => 0, "GC" => "0"
-                    ),
-                    "Salamanca" => array(
-                        "Puntos" => "0", "GF" => 0, "GC" => "0"
-                    ),
-                    "Avila" => array(
-                        "Puntos" => "0", "GF" => 0, "GC" => "0"
-                    ),
-                    "Valladolid" => array(
-                        "Puntos" => "0", "GF" => 0, "GC" => "0"
-                    ),
-                );
-
-                foreach($liga as $key => $valor){ 
-                    $i = 0;
-                    foreach($valor as $equipo => $resultado){
-                        list($rl, $rv) = explode("-", $resultado["Resultado"]);
-                        if($rl > $rv){
-                            $resultados[$key]["Puntos"] += 3;
-                        } else if($rl == $rv){
-                            $resultados[$key]["Puntos"] += 1;
-                            $resultados[$equipo]["Puntos"] += 1;
-                        } else {
-                            $resultados[$equipo]["Puntos"] += 3;
-                        }
-                        $resultados[$key]["GF"] += $rl;
-                        $resultados[$key]["GC"] += $rv;
-                        $resultados[$equipo]["GC"] += $rl;
-                        $resultados[$equipo]["GF"] += $rv;
-                        
-                    }
-
-                }
-
-                foreach($resultados as $key => $valor){
-                    echo "<tr><td> $key </td>";
-
-                    foreach($valor as $clave => $res){
-                        echo "<td>$res</td>";
-                    }
-                    echo "</tr>";
-                }
-
-            ?>
-        </tr>
-
         </table>
+
     </body>
 </html>
