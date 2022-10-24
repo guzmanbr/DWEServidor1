@@ -38,12 +38,14 @@ text-decoration: none;
 margin-right: 40px;
 background-color: #000000;
 }
+
 a:nth-child(1){
 margin-left: 50px;
 }
 
 footer{
 margin: auto;
+
 background-color: rgba(0, 0, 0, 0.829);
 opacity: 85%;
 width: 80%;
@@ -55,25 +57,11 @@ position: relative;
 margin-top: 400px;
 text-align: center;
 }
-
-main{
-  margin: auto;
-  display: flex;
-}
-#container{
-  background-color: violet;
-  margin: auto;
-  display: flex;
-}
-#tareas{
-  display: list-item;
-}
-
-
-
-
 h4{
 padding-bottom: 5px;
 color: white;
 margin: auto;
+}
+h4:nth-child(2){
+margin-right: 0px;
 }
