@@ -1,17 +1,23 @@
 body{
-    background-color: lightgrey;
+    background-color: black;
+    font-family: "helvetica neue";
+    background: url(fondo.png),linear-gradient(to left, #460a0d, #000000);
+    color: white;
 }
+
 h1,h2{
     text-align: center;
 }
 table{
     margin: auto;
     text-align: center;
-    border: 1px solid lightslategray;
+    border: 1px solid black;
     border-collapse: collapse; 
+    background-color: rgba(203, 208, 213, 0.914);
+    color: black;
 }
 td,th{
-    border: 1px solid lightslategrey;
+    border: 1px solid black;
     width: 80px;
     height: 50px;
 }

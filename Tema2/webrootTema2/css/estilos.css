@@ -1,12 +1,8 @@
 body{
     background-color: black;
-    min-height: 1000px;
     font-family: "helvetica neue";
-    background: url(../img/fondo.png), #000000;
-    background: url(../img/fondo.png),
-      -webkit-gradient(linear, right top, left top, from(#58080c), to(#000000));
-    background: url(fondo.png),
-      linear-gradient(to left, #58080c, #000000);
+    background: url(../img/fondo.png),linear-gradient(to left, #180102, #000000);
+    color: white;
 }
 
 header{
@@ -17,12 +13,13 @@ header{
 nav{
   margin: auto;
   display: flex;
-  background-color: whitesmoke;
+  background-color: black;
   opacity: 85%;
   width: 80%;
   border-radius: 5px;
   padding-top: 20px;
   padding-bottom: 20px;
+  opacity: 80%;
 }
 h1{
   text-align: center;
@@ -31,15 +28,16 @@ h1{
 
 h3{
   text-align: center;
-  color: black;
+  color: white;
   padding: 3px;
   border-radius: 6px;
-  border: solid black;
+  border: solid white;
   width: 70px;
 }
 a {
   text-decoration: none;
   margin-right: 40px;
+  color: white;
 }
 
 a:nth-child(1){
@@ -49,7 +47,7 @@ a:nth-child(1){
 footer{
   margin: auto;
   display: flex;
-  background-color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.836);
   opacity: 85%;
   width: 80%;
   height: 60px;
@@ -59,9 +57,11 @@ footer{
   position: relative;
   margin-top: 400px;
   text-align: center;
+  opacity: 80%;
 }
 h4{
-  padding-right: 25px
+  padding-right: 25px;
+  color: white;
 }
 h4:nth-child(2){
   margin-right: 0px;
