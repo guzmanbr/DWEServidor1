@@ -26,8 +26,8 @@
                     if (vacio("nombre") && enviado()){
                         ?><span><--Debe rellenar este campo.</span><?
                     }
-                    if(!alfabetico("nombre")){
-                        ?><span><--Debe rellenar este campo.</span><?
+                    if(!vacio("nombre2") && !alfabetico("nombre")){
+                        ?><span><--Tiene que ser alfabetico</span><?
                     }
 
                 ?>
