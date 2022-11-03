@@ -73,6 +73,21 @@
     echo "<br>";
     //etiqueta que pueda ser o de apertura o de cierre html,  match con <html> o <h3> </html> </h3>
 
-    
+    $etiqueta1 ="<html>";
+    $etiqueta2 ="</html>";
+    $etiqueta3 ="<a>";
+    $etiqueta4 ="</h3>";
 
+    $patron = "/<\/?\D+\d*>/";//puede o no tener tiqueta de cierre, una o mas letras, 0 o mas numeros
+    echo "<br> Cadena: ".$etiqueta1." y patron  " .$patron. "  Match " .preg_match($patron,$etiqueta1);
+    echo "<br> Cadena: ".$etiqueta2." y patron  " .$patron. "  Match " .preg_match($patron,$etiqueta2);
+    echo "<br> Cadena: ".$etiqueta3." y patron  " .$patron. "  Match " .preg_match($patron,$etiqueta3);
+    echo "<br> Cadena: ".$etiqueta4." y patron  " .$patron. "  Match " .preg_match($patron,$etiqueta4);
+
+    //quiero que me devuelva donde ha hecho match
+
+    $patron = "/<\/?\D+\d*>/";
+    $cadena="<html><a></a></html>";
+    echo "<br> Cadena: ".$cadena." y patron  " .$patron. "  Match " .preg_match_all($patron,$cadena,$array);
+    preg_match_all($patron,$cadena,$array);
 ?>
