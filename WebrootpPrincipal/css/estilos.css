@@ -12,7 +12,7 @@ header{
 nav{
   margin: auto;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.829);
+  background-color: rgba(0, 0, 0, 0.699);
   opacity: 85%;
   width: 80%;
   border-radius: 5px;
@@ -45,8 +45,7 @@ a:nth-child(1){
 
 footer{
   margin: auto;
-
-  background-color: rgba(0, 0, 0, 0.829);
+  background-color: rgba(0, 0, 0, 0.699);
   opacity: 85%;
   width: 80%;
   height: 50px;

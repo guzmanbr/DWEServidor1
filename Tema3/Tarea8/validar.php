@@ -61,6 +61,16 @@
         if (!vacio("apellido2")) {
             echo "Alfanumerico Opcional: ".$_REQUEST["apellido2"];
         }
+        if (!vacio("apellido2")) {
+            echo "Alfanumerico Opcional: ".$_REQUEST["apellido2"];
+        }
+        if (!vacio("fecha2")) {
+            echo "Fecha Opcional: ".$_REQUEST["fecha2"];
+        }
+        if (!vacio("fecha2")) {
+            echo "Fecha Opcional: ".$_REQUEST["fecha2"];
+        }
+
 
     }
 

@@ -2,6 +2,7 @@ body{
   background-color: black;
   font-family: "helvetica neue";
   background: url(../img/fondo.png),linear-gradient(to left, #180102, #000000);
+  color: white;
 }
 
 header{
@@ -38,14 +39,12 @@ text-decoration: none;
 margin-right: 40px;
 background-color: #000000;
 }
-
 a:nth-child(1){
 margin-left: 50px;
 }
 
 footer{
 margin: auto;
-
 background-color: rgba(0, 0, 0, 0.829);
 opacity: 85%;
 width: 80%;
@@ -53,15 +52,44 @@ height: 50px;
 border-radius: 5px;
 padding-top: 20px;
 padding-bottom: 20px;
-position: relative;
-margin-top: 400px;
+margin-top: 50px;
 text-align: center;
 }
+
+main{
+  margin: auto;
+  display: flex;
+}
+#container{
+  background-color: rgba(0, 0, 0, 0.699);
+  border-radius: 6px;
+  border: solid 1px #180102;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: fit-content;
+  min-width: 500px;
+  width: fit-content;
+  padding: 20px;
+}
+
+#container a{
+  padding: 5px;
+  border-radius: 4px;
+  border: solid 1px white;
+  text-decoration: underline;
+  color: white;
+}
+
+#tareas{
+  margin-bottom: 50px;
+}
+
 h4{
 padding-bottom: 5px;
 color: white;
 margin: auto;
 }
-h4:nth-child(2){
-margin-right: 0px;
+h2{
+  text-align: center;
 }
