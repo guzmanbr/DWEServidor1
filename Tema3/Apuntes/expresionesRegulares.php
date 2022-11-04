@@ -78,7 +78,7 @@
     $etiqueta3 ="<a>";
     $etiqueta4 ="</h3>";
 
-    $patron = "/<\/?\D+\d*>/";//puede o no tener tiqueta de cierre, una o mas letras, 0 o mas numeros
+    $patron = "/<\/?\D+\d*>/";//puede o no tener etiqueta de cierre, una o mas letras, 0 o mas numeros
     echo "<br> Cadena: ".$etiqueta1." y patron  " .$patron. "  Match " .preg_match($patron,$etiqueta1);
     echo "<br> Cadena: ".$etiqueta2." y patron  " .$patron. "  Match " .preg_match($patron,$etiqueta2);
     echo "<br> Cadena: ".$etiqueta3." y patron  " .$patron. "  Match " .preg_match($patron,$etiqueta3);
@@ -90,4 +90,41 @@
     $cadena="<html><a></a></html>";
     echo "<br> Cadena: ".$cadena." y patron  " .$patron. "  Match " .preg_match_all($patron,$cadena,$array);
     preg_match_all($patron,$cadena,$array);
+
+    echo "<br>";
+
+    $patron = "/<\/?[a-z]+[0-9]*>/";
+    $cadena = '<html>Dentro de una </html> <a>Dentro del enlace</a> <p>Dentro de un p</p>';
+    echo "<br> Cadena: ".$cadena." y patron  " .$patron. "  Match " .preg_match($patron,$cadena);
+
+
+    echo "<br><br>";
+    echo "<br>Array de coincidencias<br>";
+    preg_match_all($patron,$cadena,$array);
+
+    foreach ($array [0] as  $value) {
+        echo str_replace('<','&lt',$value)."<br>";
+    }
+    $patron ='/<[a-z]+[0-9]?(.*)<\/[a-z]+[0-9]?>/';
+    $cadena = '<html>Dentro de una </html> <a>Dentro del enlace</a> <p>Dentro de un p</p>';
+    preg_match_all($patron,$cadena,$array);
+    echo "Dentro de etiquetas";
+
+    echo "<br><br>";
+
+    //Expresiones regulares en arrays
+
+    $lista = array('Maria','Criado','25','Zamora','Calle Requejo 25', '492');
+    $patron = '/^\d{1,3}$/';
+    $numeros = preg_grep($patron,$lista);
+    print_r($numeros);
+
+    echo "<br>";
+    
+    $sustituir = 'numero';
+    $cambiado = preg_replace($patron,$sustituir,$lista);//array cambiado, cambia lo que coincide con el patron por lo que queramos (patron, lo que queremos que ponga, y array)
+    print_r($cambiado);
+
+
+
 ?>

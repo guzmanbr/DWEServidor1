@@ -15,7 +15,7 @@
         
         
         <?php
-            if (enviado()==false || validarTodo() ==false) {
+            if (enviado()==false || validarTodo() == false) {
                 ?>
                     <h2>Fromulario de registro</h2>
                     <form action="./indexTarea8.php" method="post" enctype="multipart/form-data">
@@ -261,7 +261,13 @@
                         </br>
                         <p>
                             <label for="idDoc">Subir documento </label>
-                            <input type="file" name="documento" id="idDoc">
+                            <input type="file" name="documento" id="idDoc" value="<? 
+                                //guarda si se ha pulsado enviar y no estaba vacio, el valor anteriormente escrito
+                                if(enviado() && !vacio("documento")){
+                                    echo $_REQUEST["documento"];
+                                }
+                            
+                            ?>">
                             <?php
                                 //comprobar que no este vacio
                                 if (vacio("documento") && enviado()){
@@ -275,8 +281,7 @@
                         </p>
                     </form>
                 <?
-            }
-            if(validarTodo()==true){
+            }else if(validarTodo()==true){
                 mostrarResultados();
             }
         ?>
