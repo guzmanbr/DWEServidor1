@@ -271,7 +271,7 @@
                             <input type="file" name="documento" id="idDoc">
                             <?php
                                 //comprobar que existe el fichero
-                                if (existeDoc("documento") && enviado()){
+                                if (!existeDoc("documento") && enviado()){
                                     ?><span><--Debe rellenar este campo.</span><?
                                 }
                             ?>
