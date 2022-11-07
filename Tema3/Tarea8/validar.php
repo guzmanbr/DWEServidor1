@@ -25,6 +25,13 @@
             return false;
         }
     }
+    function existeDoc($nombre){
+        if (isset($_FILES[$nombre])) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     
     //funcion paracontrolar que hay minimo un check y maximo 3
     function controlChecks($nombre){
@@ -39,81 +46,59 @@
         }
     }
 
-    //validar que el formulario se puede enviar
-    function validarTodo(){
-        if(enviado()){
-            if ( !vacio($_REQUEST["nombre"]) && !vacio($_REQUEST["apellido1"]) && !vacio($_REQUEST["fecha"]) && !existe($_REQUEST["opcion"]) && !existe("opcionSelect") &&
-            !existe("checks") && !vacio("telefono") && !vacio("mail") && !vacio("pass")) {
-               return true;
-            }
-            
-        }else{
-            return false;
-        }
- 
-    }
-
+    
     // funcion para mostrar los datos rellenados una vez se haya enviado el formulario
-    function mostraResultados(){
+    function mostrarResultados(){
         echo "<h1>Datos introducidos</h1>";
-        echo "Alfabetico: ".$_REQUEST["nombre"];
+        echo "<br><br>Alfabetico: ".$_REQUEST["nombre"];//
         if (!vacio("nombre2")) {
             echo "Alfabetico Opcional: ".$_REQUEST["nombre2"];
         }
-        echo "<br><br>";
-        echo "Alfanumerico: ".$_REQUEST["apellido1"];
+        echo "<br><br>Alfanumerico: ".$_REQUEST["apellido1"];//
         if (!vacio("apellido2")) {
             echo "Alfanumerico Opcional: ".$_REQUEST["apellido2"];
         }
-        echo "<br><br>";
-        if (!vacio("apellido2")) {
-            echo "Alfanumerico Opcional: ".$_REQUEST["apellido2"];
-        }
-        echo "<br><br>";
-        if (!vacio("fecha")) {
-            echo "Fecha: ".$_REQUEST["fecha2"];
-        }
-        echo "<br><br>";
+        echo "<br><br> Fecha: ".$_REQUEST["fecha"];//
         if (!vacio("fecha2")) {
-            echo "Fecha Opcional: ".$_REQUEST["fecha2"];
+            echo " <br><br>Fecha Opcional: ".$_REQUEST["fecha2"];
         }
-        echo "<br><br>";
-        if (!vacio("opcion")) {
-            echo "Radio Obligatorio: ".$_REQUEST["opcion"];
+        echo "<br><br>Radio Obligatorio: ".$_REQUEST["opcion"];//
+        echo "<br><br>Select: ".$_REQUEST["opcionSelect"];//
+        
+        echo "<br><br>CheckBox:";//
+        foreach ($_REQUEST["checks"] as $key => $value) {
+            echo " ".$value." ";
         }
-        echo "<br><br>";
-        if (!vacio("opcionSelect")) {
-            echo "Select: ".$_REQUEST["opcionSelect"];
-        }
-        echo "<br><br>";
-        if (!vacio("checks")) {
-            echo "CheckBox:";
-            foreach ($_REQUEST["checks"] as $key => $value) {
-                echo " ".$value." ";
+        echo "<br><br>Nº Telefono: ".$_REQUEST["telefono"];//
+        echo "<br><br>Email: ".$_REQUEST["mail"];//
+        echo "<br><br>Contraseña: ".$_REQUEST["pass"];//
+
+    }
+    
+    
+    function validarTodo(){
+        if (enviado()) {
+           if (!vacio("nombre")) {
+               if (!vacio("apellido1")) {
+                   if (!vacio("fecha")) {
+                       if (existe("opcion")) {
+                           if (existe("opcionSelect") && $_REQUEST["opcionSelect"]!=0) {
+                               if (existe("checks")) {
+                                    if (!vacio("telefono")) {
+                                        if (!vacio("mail")) {
+                                            if (!vacio("pass")) {
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
-        echo "<br><br>";
-        if (!vacio("telefono")) {
-            echo "Nº Telefono: ".$_REQUEST["telefono"];
-        }
-        echo "<br><br>";
-        if (!vacio("mail")) {
-            echo "Email: ".$_REQUEST["mail"];
-        }
-        echo "<br><br>";
-        if (!vacio("pass")) {
-            echo "Contraseña: ".$_REQUEST["pass"];
-        }
-        echo "<br><br>";
-        if (!vacio("documento")) {
-            echo "Documento: ".$_REQUEST["documento"];
-        }
-        
+        return false;
     }
-
-
-
-
-
 
 ?>

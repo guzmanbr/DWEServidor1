@@ -16,7 +16,9 @@
         
         
         <?php
-            if (enviado()==false || validarTodo() == false) {
+            if (enviado() && validarTodo()) {
+                mostrarResultados();
+            }else{
                 ?>
                     <h2>Fromulario de registro</h2>
                     <form action="./indexTarea8.php" method="post" enctype="multipart/form-data">
@@ -126,6 +128,7 @@
                                 <option value="1">Seleccione</option>
                                 <option value="2"                         
                                     <?
+                                        //deja selecionada la opcion tras enviar
                                         if(enviado() && existe("opcionSelect") && $_REQUEST["opcionSelect"] == "2"){
                                             echo "selected";
                                         }
@@ -142,7 +145,7 @@
                                     ?>>Opcion3</option>
                             </select>
                             <?
-                                //Comprobar que hay una opcion seleccionada distita a la predeterminada, sino muestra error
+                                //Comprobar que hay una opcion seleccionada distinta a la predeterminada, sino muestra error
                                 if(enviado() && existe("opcionSelect") && $_REQUEST["opcionSelect"] == "1"){
                                     ?><span><--Debe marcar una opcion.</span><?
                                 }
@@ -152,6 +155,7 @@
                             <p>Elige al menos 1 y maximo 3:</p>     
                             <input type="checkbox" name="checks[]" id="idcheck1" value="check1"
                                 <?
+                                //deja marcado el check tras enviar si este se encuentra entre los seleccionados
                                     if(enviado() && existe("checks") && in_array("check1",  $_REQUEST["checks"])){
                                         echo "checked";
                                     }
@@ -203,6 +207,7 @@
                                 if (vacio("checks") && enviado()){
                                     ?><span><--Debe seleccionar al menos 1 opcion.</span><?
                                 }
+                                //si hay alguno marcado comprueba que sea el numero permitido
                                 if (existe("checks")) {
                                     if (!controlChecks("checks")) {
                                         ?><span><--Debe seleccionar de 1 a 3 opciones.</span><?
@@ -221,7 +226,8 @@
                                 if (vacio("telefono") && enviado()){
                                     ?><span><--Debe rellenar este campo.</span><?
                                 }
-                                if((vacio('telefono') || !is_numeric($_REQUEST['telefono']) )&& enviado()){
+                                //comprueba que sea un numero 
+                                if(!vacio('telefono') && !is_numeric($_REQUEST['telefono']) && enviado()){
                                     ?>                        
                                     <span><--Debes reñenar el telefono con numeros</span>                        
                                     <?
@@ -262,16 +268,10 @@
                         </br>
                         <p>
                             <label for="idDoc">Subir documento </label>
-                            <input type="file" name="documento" id="idDoc" value="<? 
-                                //guarda si se ha pulsado enviar y no estaba vacio, el valor anteriormente escrito
-                                if(enviado() && !vacio("documento")){
-                                    echo $_REQUEST["documento"];
-                                }
-                            
-                            ?>">
+                            <input type="file" name="documento" id="idDoc">
                             <?php
-                                //comprobar que no este vacio
-                                if (vacio("documento") && enviado()){
+                                //comprobar que existe el fichero
+                                if (existeDoc("documento") && enviado()){
                                     ?><span><--Debe rellenar este campo.</span><?
                                 }
                             ?>
@@ -281,13 +281,9 @@
                             <input type="submit" value="Enviar" name="enviar">
                         </p>
                     </form>
-                <?
-            }else if(validarTodo()==true){
-                mostrarResultados();
+                <?   
             }
         ?>
-
-
 
     </body>
 
