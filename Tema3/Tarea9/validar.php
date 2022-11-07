@@ -72,6 +72,7 @@
         echo "<br><br>Nº Telefono: ".$_REQUEST["telefono"];//
         echo "<br><br>Email: ".$_REQUEST["mail"];//
         echo "<br><br>Contraseña: ".$_REQUEST["pass"];//
+        
 
     }
     
@@ -83,8 +84,8 @@
                    if (!vacio("fecha")) {
                        if (existe("opcion")) {
                            if (existe("opcionSelect") && $_REQUEST["opcionSelect"]!=0) {
-                               if (existe("checks")) {
-                                    if (!vacio("telefono")) {
+                               if (existe("checks") && controlChecks()) {
+                                    if (!vacio("telefono") && is_numeric($_REQUEST["telefono"])) {
                                         if (!vacio("mail")) {
                                             if (!vacio("pass")) {
                                                 return true;

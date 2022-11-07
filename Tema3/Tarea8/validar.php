@@ -50,31 +50,30 @@
     // funcion para mostrar los datos rellenados una vez se haya enviado el formulario
     function mostrarResultados(){
         echo "<h1>Datos introducidos</h1>";
-        echo "<br><br>Alfabetico: ".$_REQUEST["nombre"];//
+        echo "<br><br>Alfabetico: ".$_REQUEST["nombre"];
         if (!vacio("nombre2")) {
-            echo "Alfabetico Opcional: ".$_REQUEST["nombre2"];
+            echo "<br><br>Alfabetico Opcional: ".$_REQUEST["nombre2"];
         }
-        echo "<br><br>Alfanumerico: ".$_REQUEST["apellido1"];//
+        echo "<br><br>Alfanumerico: ".$_REQUEST["apellido1"];
         if (!vacio("apellido2")) {
             echo "Alfanumerico Opcional: ".$_REQUEST["apellido2"];
         }
-        echo "<br><br> Fecha: ".$_REQUEST["fecha"];//
+        echo "<br><br> Fecha: ".$_REQUEST["fecha"];
         if (!vacio("fecha2")) {
             echo " <br><br>Fecha Opcional: ".$_REQUEST["fecha2"];
         }
-        echo "<br><br>Radio Obligatorio: ".$_REQUEST["opcion"];//
-        echo "<br><br>Select: ".$_REQUEST["opcionSelect"];//
+        echo "<br><br>Radio Obligatorio: ".$_REQUEST["opcion"];
+        echo "<br><br>Select: ".$_REQUEST["opcionSelect"];
         
-        echo "<br><br>CheckBox:";//
+        echo "<br><br>CheckBox:";
         foreach ($_REQUEST["checks"] as $key => $value) {
             echo " ".$value." ";
         }
-        echo "<br><br>Nº Telefono: ".$_REQUEST["telefono"];//
-        echo "<br><br>Email: ".$_REQUEST["mail"];//
-        echo "<br><br>Contraseña: ".$_REQUEST["pass"];//
+        echo "<br><br>Nº Telefono: ".$_REQUEST["telefono"];
+        echo "<br><br>Email: ".$_REQUEST["mail"];
+        echo "<br><br>Contraseña: ".$_REQUEST["pass"];
 
     }
-    
     
     function validarTodo(){
         if (enviado()) {
