@@ -22,7 +22,7 @@
                     <p>
                         <label for="idNombre">Nombre: </label>
                         <input type="text" name="nombre" id="idNombre" placeholder="Nombre" value="<? 
-                            if(enviado() && !vacio("nombre")){
+                            if(enviado() && !vacio("nombre") && validaNombre()){
                                 echo $_REQUEST["nombre"];
                             }
                         ?>">
