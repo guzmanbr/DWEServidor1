@@ -17,34 +17,19 @@
         }
     }
 
-    //funcion para comprobar que hay una opcion seleccionada
-    function existe($nombre){
-        if (isset($_REQUEST[$nombre])) {
-            return true;
-        }else {
-            return false;
-        }
+    function letraDni() {
+        $dniForm=$_REQUEST["dni"];
+        $dniForm= array();
+        unset($dniForm[$dniForm.length-1]);
+        // $dni=$_REQUEST["dni"];
+        $valor= (int) ($dni / 23);
+        $valor *= 23;
+        $valor= $dni - $valor;
+        $letras= "TRWAGMYFPDXBNJZSQVHLCKEO";
+        $letra= substr ($letras, $valor, 1);
+        echo $letra;
     }
-    function existeDoc($nombre){
-        if (isset($_FILES[$nombre])) {
-            return true;
-        }else {
-            return false;
-        }
-    }
-    
-    //funcion paracontrolar que hay minimo un check y maximo 3
-    function controlChecks($nombre){
-        $conta=0;
-        if (isset($_REQUEST[$nombre])) {
-            $conta = count($_REQUEST[$nombre]);
-        }
-        if ($conta <1 || $conta>3) {
-            return false;
-        }else {
-            return true;
-        }
-    }
+
 
     
     // funcion para mostrar los datos rellenados una vez se haya enviado el formulario
@@ -80,19 +65,11 @@
     function validarTodo(){
         if (enviado()) {
            if (!vacio("nombre")) {
-               if (!vacio("apellido1")) {
+               if (!vacio("apellido")) {
                    if (!vacio("fecha")) {
-                       if (existe("opcion")) {
-                           if (existe("opcionSelect") && $_REQUEST["opcionSelect"]!=0) {
-                               if (existe("checks") && controlChecks()) {
-                                    if (!vacio("telefono") && is_numeric($_REQUEST["telefono"])) {
-                                        if (!vacio("mail")) {
-                                            if (!vacio("pass")) {
-                                                return true;
-                                            }
-                                        }
-                                    }
-                                }
+                        if (!vacio("dni")) {
+                            if (!vacio("email")) {
+                                return true;
                             }
                         }
                     }

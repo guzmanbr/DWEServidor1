@@ -93,3 +93,27 @@ margin: auto;
 h2{
   text-align: center;
 }
+
+ul{
+  margin-top:90px ;
+}
+li{
+  list-style: none;
+}
+a:visited{
+  color: white;
+}
+a:hover{
+  font-size: 19px;
+}
+div{
+  display: flex;
+}
+form{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+form input{
+  width: 300px;
+}

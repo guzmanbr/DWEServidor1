@@ -14,15 +14,18 @@
     <body>
         <h1>Tarea 9</h1>
         
-        
         <?php
             ?>
                 <h2>Fromulario de registro</h2>
+                <div>
                 <form action="./indexTarea9.php" method="post" enctype="multipart/form-data">
                     <p>
                         <label for="idNombre">Nombre: </label>
                         <input type="text" name="nombre" id="idNombre" placeholder="Nombre" value="<? 
-                            if(enviado() && !vacio("nombre") && validaNombre()){
+
+                            $patron='/^[a-z A-Z]{3,}$/'; 
+                            //comprobar si el patron coincide, si coincide guardar valor
+                            if(enviado() && !vacio("nombre") && preg_match($patron,$_REQUEST["nombre"])){
                                 echo $_REQUEST["nombre"];
                             }
                         ?>">
@@ -31,54 +34,35 @@
                             if (vacio("nombre") && enviado()){
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
+                            //comprobar si el patron coincide, sino mostrar mensaje
+                            if (!vacio("nombre") && enviado() && !preg_match($patron,$_REQUEST["nombre"])){
+                                ?><span><--Debe tener un minimo de 3 letras.</span><?
+                            }
                         ?>
                     </p>
                     <p>
                         <label for="idApellidos">Apellidos: </label>
                         <input type="text" name="apellidos" id="idApellidos" placeholder="Apellidos" value="<? 
-                            if(enviado() && !vacio("apellidos")){
+
+                            $patron='/^[a-z A-Z]{3,}\s[a-z A-Z]{3,}$/'; 
+                            if(enviado() && !vacio("apellidos") && preg_match($patron,$_REQUEST["apellidos"])){
                                 echo $_REQUEST["apellidos"];
                             }
                         ?>">
                         <?php
-                            //comprobar que no este vacio
                             if (vacio("apellidos") && enviado()){
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
-                        ?>
-                    </p>
-                    <p>
-                        <label for="idContraseña">Contraseña: </label>
-                        <input type="text" name="contraseña" id="idContraseña" placeholder="Contraseña" value="<? 
-                            if(enviado() && !vacio("contraseña")){
-                                echo $_REQUEST["contraseña"];
-                            }
-                        ?>">
-                        <?php
-                            //comprobar que no este vacio
-                            if (vacio("contraseña") && enviado()){
-                                ?><span><--Debe rellenar este campo.</span><?
-                            }
-                        ?>
-                    </p>
-                    <p>
-                        <label for="idContraseña2">Repetir Contraseña: </label>
-                        <input type="text" name="contraseña2" id="idContraseña2" placeholder="Contraseña" value="<? 
-                            if(enviado() && !vacio("contraseña2")){
-                                echo $_REQUEST["contraseña2"];
-                            }
-                        ?>">
-                        <?php
-                            //comprobar que no este vacio
-                            if (vacio("contraseña2") && enviado()){
-                                ?><span><--Debe rellenar este campo.</span><?
+                            if (!vacio("apellidos") && enviado() && !preg_match($patron,$_REQUEST["apellidos"])){
+                                ?><span><--Debe llevar cada apellido minimo 3 letras y un espacio entre ellos.</span><?
                             }
                         ?>
                     </p>
                     <p>
                         <label for="idFecha">Fecha: </label>
-                        <input type="text" name="fecha" id="idFecha" placeholder="Fecha" value="<? 
-                            if(enviado() && !vacio("fecha")){
+                        <input type="text" name="fecha" id="idFecha" placeholder="Dia-Mes-Año" value="<? 
+                            $patron='/^\d{1,2}\-\d{1,2}\-\d{4}$/';
+                            if(enviado() && !vacio("fecha") && preg_match($patron,$_REQUEST["fecha"])){
                                 echo $_REQUEST["fecha"];
                             }
                         ?>">
@@ -87,12 +71,16 @@
                             if (vacio("fecha") && enviado()){
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
+                            if (!vacio("fecha") && enviado() && !preg_match($patron,$_REQUEST["fecha"])){
+                                ?><span><--Debe rellenar con el formato adecuado.</span><?
+                            }
                         ?>
                     </p>
                     <p>
                         <label for="idDni">DNI: </label>
                         <input type="text" name="dni" id="idDni" placeholder="DNI" value="<? 
-                            if(enviado() && !vacio("dni")){
+                            $patron='/^\d{8}[A-Z]{1}/';
+                            if(enviado() && !vacio("dni") && preg_match($patron,$_REQUEST["dni"])){
                                 echo $_REQUEST["dni"];
                             }
                         ?>">
@@ -101,19 +89,26 @@
                             if (vacio("dni") && enviado()){
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
+                            
+                            if (!vacio("dni") && enviado() && !preg_match($patron,$_REQUEST["dni"])  &&  ){
+                                ?><span><--Debe utilizar el formatoa decuado.</span><?
+                            }
                         ?>
                     </p>
                     <p>
                         <label for="idEmail">Email: </label>
-                        <input type="text" name="email" id="idEmail" placeholder="Email" value="<? 
-                            if(enviado() && !vacio("email")){
+                        <input type="text" name="email" id="idEmail" placeholder="email1@email.com" value="<? 
+                            $patron='/^\w{1,}\@\D{1,}\.\D{2,}$/';
+                            if(enviado() && !vacio("email") && preg_match($patron,$_REQUEST["email"])){
                                 echo $_REQUEST["email"];
                             }
                         ?>">
                         <?php
-                            //comprobar que no este vacio
                             if (vacio("email") && enviado()){
                                 ?><span><--Debe rellenar este campo.</span><?
+                            }
+                            if (!vacio("email") && enviado() && !preg_match($patron,$_REQUEST["email"])){
+                                ?><span><--Debe rellenar con el formato adecuado.</span><?
                             }
                         ?>
                     </p>
@@ -123,11 +118,13 @@
                         <input type="submit" value="Enviar" name="enviar">
                     </p>
                 </form>
+                </div>
+                <ul>
+                    <li><a href="../../verFichero.php?fichero=Tema3/Tarea9/indexTarea9.php">Codigo IndexTarea 9</a></li>
+                    <li><a href="../../verFichero.php?fichero=Tema3/Tarea9/validar.php">Codigo validar.php </a></li>
+                </ul>
             <?
         ?>
-
-
-
     </body>
 
 </html>
