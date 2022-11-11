@@ -93,3 +93,15 @@ margin: auto;
 h2{
   text-align: center;
 }
+ul{
+  margin-top:90px ;
+}
+li{
+  list-style: none;
+}
+a:visited{
+  color: white;
+}
+.codigo:hover{
+  font-size: 15px;
+}

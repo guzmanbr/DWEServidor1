@@ -103,17 +103,15 @@ li{
 a:visited{
   color: white;
 }
-a:hover{
-  font-size: 19px;
+.codigo:hover{
+  font-size: 15px;
 }
-div{
+
+.divForm{
   display: flex;
-}
-form{
+} 
+ form{
   margin: auto;
   display: flex;
   flex-direction: column;
-}
-form input{
-  width: 300px;
 }
