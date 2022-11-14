@@ -8,42 +8,23 @@
             return false;
         }
     }
-    //funcion para comprobar que se ha pulsado l boton enviar
+
+    //funcion para comprobar que se ha pulsado leer o editar
     function enviado(){
-        if (isset($_REQUEST['enviar'])) {
+        if (isset($_REQUEST['leer']) || isset($_REQUEST['editar']) ) {
             return true;
         }else {
             return false;
         }
     }
 
-
-    function mayorEdad(){
-        
-    }
-
-    function letraDni() {
-        $dniForm=$_REQUEST["dni"];
-        echo $dniForm;
-        $dniSinLetra=$_REQUEST["dni"];
-        unset($dniSinLetra[8]);
-        echo $dniSinLetra;
-        $dni=$dniSinLetra;
-        // $dni=$_REQUEST["dni"];
-        $valor= (int) ($dni / 23);
-        $valor *= 23;
-        $valor= $dni - $valor;
-        $letras= "TRWAGMYFPDXBNJZSQVHLCKEO";
-        $letra= substr ($letras, $valor, 1);
-        echo $letra;
-        if($letra==$dniForm[8]){
+    function existe($nombre){
+        if (isset($_REQUEST[$nombre])) {
             return true;
-        }else{
+        }else {
             return false;
         }
     }
-
-    
 
 
     
