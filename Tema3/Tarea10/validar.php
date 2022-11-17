@@ -10,7 +10,7 @@
 
     //funcion para comprobar que se ha pulsado leer o editar
     function enviado(){
-        if (isset($_REQUEST['leer']) || isset($_REQUEST['editar']) ) {
+        if (isset($_REQUEST['leer']) || isset($_REQUEST['editar']) || isset($_REQUEST['volver'])) {
             return true;
         }else {
             return false;

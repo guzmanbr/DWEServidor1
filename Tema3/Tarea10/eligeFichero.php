@@ -19,10 +19,9 @@
                 <form action="./eligeFichero.php" method="post" enctype="multipart/form-data">
                     <p>
                         <label for="idFichero">Nombre fichero: </label>
-                        <input type="text" name="fichero" id="idFichero" placeholder="Nombre" value="<? 
-                            $patron='/^.+\.(txt)$/'; 
+                        <input type="text" name="fichero" id="idFichero" placeholder="Nombre fichero" value="<? 
                             //comprobar si el patron coincide, si coincide guardar valor )
-                            if(enviado() && !vacio("fichero")  && preg_match($patron,$_REQUEST["fichero"])){
+                            if(enviado() && !vacio("fichero")){
                                 echo $_REQUEST["fichero"];
                             }
                         ?>">
@@ -31,9 +30,25 @@
                             if (vacio("fichero") && enviado()){
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
-                            //comprobar si el patron coincide, sino mostrar mensaje
-                            if (!vacio("fichero") && enviado() && !preg_match($patron,$_REQUEST["fichero"])){
-                                ?><span><-- Debe cumplir el patron (nombre.txt).</span><?
+                        ?>
+                        <?php                    
+                            if (enviado()) {
+                                if (existe('editar')) {
+                                    if (file_exists($_REQUEST['fichero'])){
+                                        header('Location: ./editarFichero.php?fichero='. $_REQUEST["fichero"]); 
+                                        exit();
+                                    }else if(!vacio("fichero")){
+                                        ?><span><--El fichero selecionado no existe.</span><?
+                                    }
+                                }
+                                if (existe('leer')) { 
+                                    if (file_exists($_REQUEST['fichero'])){
+                                        header('Location: ./leerFichero.php?fichero='. $_REQUEST["fichero"]); 
+                                        exit();
+                                    }else if(!vacio("fichero")){
+                                        ?><span><--El fichero selecionado no existe.</span><?
+                                    }
+                                }                        
                             }
                         ?>
                     </p>                
@@ -41,22 +56,6 @@
                         <input type="submit" value="Editar" name="editar">
                         <input type="submit" value="Leer" name="leer">
                     </p>
-                    <?php                    
-                        if (enviado()) {
-                            if (existe('editar') && preg_match($patron,$_REQUEST["fichero"])) {
-                            header('Location: ./editarFichero.php?fichero='. $_REQUEST["fichero"]); 
-                                exit();
-                            }
-                            if (existe('leer') && preg_match($patron,$_REQUEST["fichero"])) { 
-                                if (file_exists($_REQUEST['fichero'])){
-                                    header('Location: ./leerFichero.php?fichero='. $_REQUEST["fichero"]); 
-                                    exit();
-                                }else {
-                                    ?><span><--El fichero selecionado no existe.</span><?
-                                }
-                            }                        
-                        }
-                    ?>
                 </form>
                 <ul>
                     <li><a class="codigo" href="../../verFichero.php?fichero=Tema3/Tarea10/eligeFichero.php">Codigo Tarea 10</a></li>

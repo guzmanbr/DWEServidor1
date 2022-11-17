@@ -1,6 +1,14 @@
 <?php
     require("validar.php");
 ?>
+
+<?php
+    //si pulso volver abre ventana eligeFichero
+    if (existe('volver')) {
+        header('Location: ./eligeFichero.php'); 
+        exit();
+    } 
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -15,43 +23,33 @@
         <?php
             ?>
                 <h2>Editar Fichero</h2>
-                <div>
-                <?php
-                    if(enviado()){
-                        if($fichero = fopen($_REQUEST["fichero"], "w")){
-                            $texto = $_REQUEST["textArea"];
-                            fwrite($fichero, $texto, strlen($texto));
-                            fclose($fichero);
-                        }
-                        header('Location: ./editarFichero.php?fichero='.$_REQUEST["fichero"]);
-                        exit();
-                    }
-                ?>
-                <form action="./editaFichero.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="fichero" value=" <?php echo $_REQUEST["fichero"]; ?>">
 
-                    <textarea name="textArea" rows="15" cols="25">
-                        
+                <form action="./editarFichero.php" method="post" enctype="multipart/form-data">
+                    <textarea name="textArea">
+                        <?
+                            if (!$fp = fopen($_REQUEST['fichero'],'r')) {
+                                ?><span>Hubo un problema al abrir el fichero</span><?
+                            } else {  
+                                while ($lea = fgets($fp, filesize($_REQUEST['fichero']))) {
+                                    echo $lea;
+                                }
+
+                                if(existe('modificar')){
+                                    if($fp = fopen($_REQUEST["fichero"], "w")){
+                                        $texto = $_REQUEST["textArea"];
+                                        fwrite($fichero, $texto, strlen($texto));
+                                        fclose($fichero);
+                                    }
+                                }
+                            } 
+                        ?>
                     </textarea>
-                    <br>
-                    <input type="submit" name="leer" value="modificar">
+                    <p>
+                        <input type="submit" value="Modificar" name="modificar">
+                        <input type="submit" value="Volver" name="volver">
+                    </p>
                 </form>             
-                <p>
-                    <input type="submit" value="Volver" name="volver">
-                    <input type="submit" value="Elige" name="elige">
-                </p>
-                <?php                    
-                    if (enviado()) {
-                        if (existe('volver') && preg_match($patron,$_REQUEST["fichero"])) {
-                            header('Location: ./eligeFichero.php?fichero='. $_REQUEST["fichero"]); 
-                            exit();
-                        }
-                        if (existe('elige') && preg_match($patron,$_REQUEST["fichero"])) { 
-                            header('Location: ./eligeFichero.php?fichero='. $_REQUEST["fichero"]); 
-                            exit();
-                        }                        
-                    }
-                ?>
+                <hr>
                 <ul>
                     <li><a class="codigo" href="../../verFichero.php?fichero=Tema3/Tarea10/eligeFichero.php">Codigo Tarea 10</a></li>
                     <li><a class="codigo" href="../../verFichero.php?fichero=Tema3/Tarea10/validar.php">Codigo validar.php</a></li>
