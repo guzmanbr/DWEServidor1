@@ -18,21 +18,21 @@
                 <div>
                 <form action="./eligeFichero.php" method="post" enctype="multipart/form-data">
                     <p>
-                        <label for="idNombre">Nombre fichero: </label>
-                        <input type="text" name="nombre" id="idNombre" placeholder="Nombre" value="<? 
+                        <label for="idFichero">Nombre fichero: </label>
+                        <input type="text" name="fichero" id="idFichero" placeholder="Nombre" value="<? 
                             $patron='/^.+\.(txt)$/'; 
                             //comprobar si el patron coincide, si coincide guardar valor )
-                            if(enviado() && !vacio("nombre")  && preg_match($patron,$_REQUEST["nombre"])){
-                                echo $_REQUEST["nombre"];
+                            if(enviado() && !vacio("fichero")  && preg_match($patron,$_REQUEST["fichero"])){
+                                echo $_REQUEST["fichero"];
                             }
                         ?>">
                         <?php
                             //comprobar que no este vacio
-                            if (vacio("nombre") && enviado()){
+                            if (vacio("fichero") && enviado()){
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
                             //comprobar si el patron coincide, sino mostrar mensaje
-                            if (!vacio("nombre") && enviado() && !preg_match($patron,$_REQUEST["nombre"])){
+                            if (!vacio("fichero") && enviado() && !preg_match($patron,$_REQUEST["fichero"])){
                                 ?><span><-- Debe cumplir el patron (nombre.txt).</span><?
                             }
                         ?>
@@ -43,15 +43,16 @@
                     </p>
                     <?php                    
                         if (enviado()) {
-                            if (existe('editar') && preg_match($patron,$_REQUEST["nombre"])) {
-                            header('Location: ./editarFichero.php?nombre='. $_REQUEST["nombre"]); 
+                            if (existe('editar') && preg_match($patron,$_REQUEST["fichero"])) {
+                            header('Location: ./editarFichero.php?fichero='. $_REQUEST["fichero"]); 
                                 exit();
                             }
-
-                            if (existe('leer') && preg_match($patron,$_REQUEST["nombre"])) { 
-                                if (file_exists($_REQUEST['nombre'])){
-                                    header('Location: ./leerFichero.php?nombre='. $_REQUEST["nombre"]); 
+                            if (existe('leer') && preg_match($patron,$_REQUEST["fichero"])) { 
+                                if (file_exists($_REQUEST['fichero'])){
+                                    header('Location: ./leerFichero.php?fichero='. $_REQUEST["fichero"]); 
                                     exit();
+                                }else {
+                                    ?><span><--El fichero selecionado no existe.</span><?
                                 }
                             }                        
                         }
@@ -60,6 +61,8 @@
                 <ul>
                     <li><a class="codigo" href="../../verFichero.php?fichero=Tema3/Tarea10/eligeFichero.php">Codigo Tarea 10</a></li>
                     <li><a class="codigo" href="../../verFichero.php?fichero=Tema3/Tarea10/validar.php">Codigo validar.php</a></li>
+                    <li><a class="codigo" href="../../verFichero.php?fichero=Tema3/Tarea10/leerFichero.php">Codigo leerFichero.php</a></li>
+                    <li><a class="codigo" href="../../verFichero.php?fichero=Tema3/Tarea10/editarFichero.php">Codigo editarFichero.php</a></li>
                 </ul>
             <?
         ?>
