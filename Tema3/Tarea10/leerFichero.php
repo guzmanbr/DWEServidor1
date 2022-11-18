@@ -4,7 +4,7 @@ require("validar.php");
 
 <?php
     if (existe('editar')) {
-        header('Location: ./editarFichero.php');
+        header('Location: ./editarFichero.php?fichero='. $_REQUEST["fichero"]); 
         exit();
     }
     //si pulso volver abre ventana eligeFichero
@@ -29,8 +29,7 @@ require("validar.php");
     <h2>Leer Fichero</h2>
 
     <form action="./leerFichero.php" method="post" enctype="multipart/form-data">
-        <textarea name="textArea">
-            <?php 
+        <textarea name="textArea"><?php 
                 if (!$fp = fopen($_REQUEST['fichero'],'r')) {
                     ?><span>Hubo un problema al abrir el fichero</span><?
                 } else {  
@@ -42,8 +41,7 @@ require("validar.php");
                 } 
             
             
-            ?>
-        </textarea>
+            ?></textarea>
         <p>
             <input type="submit" value="Editar" name="editar">
             <input type="submit" value="Volver" name="volver">

@@ -25,8 +25,8 @@
                 <h2>Editar Fichero</h2>
 
                 <form action="./editarFichero.php" method="post" enctype="multipart/form-data">
-                    <textarea name="textArea">
-                        <?
+                    <input type="hidden" name="fichero" value ="<? echo$_REQUEST["fichero"] ?>">
+                    <textarea name="textArea"><?
                             if (!$fp = fopen($_REQUEST['fichero'],'r')) {
                                 ?><span>Hubo un problema al abrir el fichero</span><?
                             } else {  
@@ -42,8 +42,7 @@
                                     }
                                 }
                             } 
-                        ?>
-                    </textarea>
+                        ?></textarea>
                     <p>
                         <input type="submit" value="Modificar" name="modificar">
                         <input type="submit" value="Volver" name="volver">
