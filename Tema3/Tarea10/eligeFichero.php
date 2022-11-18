@@ -1,6 +1,7 @@
 <?php
     require("validar.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
