@@ -7,18 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../webrootTema3/css/estilos.css">
     <title>tabla notas</title>
 </head>
 
 <body>
     <header>
         <h1>Practica 10.2</h1>
+        <h2>Lista notas</h2>
     </header>
     <main>
-        <ul class="menú">
-            <li><a href="#">Notas</a></li>
-        </ul>
-
         <table align="center">
             <tr>
                 <th>Alumno</th>
@@ -40,7 +38,7 @@
                         echo $celda;
                         echo '</td>';
                     }
-                    echo "<td><a href='editaFichero.php?indice=".$contador++."'> Editar </a></td>";
+                    echo "<td><a href='editar.php?indice=".$contador++."'> Editar </a></td>";
                     echo '</tr>';
                 }
                 //Siempre se cierra
@@ -48,14 +46,6 @@
             }
             ?>
         </table>
-        <ul class="menú">
-            <!-- Codigos PHP -->
-            <li><a href="verCodigo.php?fichero=tablaFichero.php">Código principal</a></li>
-            <li><a href="verCodigo.php?fichero=validar.php">Código validación</a></li>
-
-
-            <li><a href="../../index.html">Volver</a></li>
-        </ul>
     </main>
 </body>
 

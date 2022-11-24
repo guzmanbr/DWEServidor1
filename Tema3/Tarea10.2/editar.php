@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../webrootTema3/css/estilos.css">
     <title>tabla notas</title>
 </head>
 
@@ -28,7 +28,6 @@
         <h1>PR10_2</h1>
     </header>
     <main>
-        <ul class="menú"><li><a href="#">Editar notas</a></li></ul>
         <?php
             if (verificar()){
                 //Guardando las notas que modificamos
@@ -49,7 +48,7 @@
             }else{
                 
         ?>
-        <form action="./editaFichero.php" method="post">
+        <form action="./editar.php" method="post">
             <!-- <?echo '<pre>',print_r($array_datos),'</pre>'?> -->
             <!-- Nos ayuda a guardar la nueva informacion -->
             <input type="hidden" name="indice" value="<?php
@@ -124,12 +123,6 @@
         <?php
         }
         ?>
-        <ul class="menú">
-            <!-- Codigos PHP -->
-            <li><a href="verCodigo.php?fichero=editaFichero.php">Código edición</a></li>
-
-            <li><a href="./tablaFichero.php">Volver</a></li>
-        </ul>
     </main>
 </body>
 
