@@ -17,7 +17,6 @@
     foreach ($raiz->childNodes as $elementos) {
         if($elementos->nodeType ==1){
             echo "<br> Un hijo que es: ".$elementos->nodeName;
-
             foreach ($elementos->childNodes as $datos) {
                 if($datos->nodeType ==1){
                     echo "<br> Un hijo que es: ".$datos->nodeName. " y valor ". $datos->nodeValue;
@@ -25,6 +24,5 @@
             }
         }
     }
-
 ?>
     
