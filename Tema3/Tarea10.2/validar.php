@@ -1,34 +1,31 @@
-Código fichero validador.php
 <?php
-
     function enviado(){
-        if (isset($_REQUEST['guardar'])){
+        if (isset($_REQUEST['guardar'])) {
             return true;
         }
         return false;
     }
 
-    function patNotas($nota){
-        $patron= '/^(10|\d)$/';
-        if (preg_match($patron,$_REQUEST[$nota])==1){
+    function vacio($nombre){
+        if (empty($_REQUEST[$nombre])) {
             return true;
         }
         return false;
     }
 
-    function vacio($dato){
-        if (empty($_REQUEST[$dato])) {
+    function patronNotas($nombre){
+        $patron = '/^(\d|10)$/';
+        if (preg_match($patron, $_REQUEST[$nombre])) {
             return true;
-        }else {
-            return false;
         }
+        return false;
     }
 
-    function validarTodo(){
-        if (enviado()){
-            if (!vacio('nota1') && patNotas('nota1')){
-                if(!vacio('nota2') && patNotas('nota2')){
-                    if(!vacio('nota3') && patNotas('nota3')){
+    function verificar(){
+        if (enviado()) {
+            if (!vacio('nota1') && patronNotas('nota1')) {
+                if (!vacio('nota2') && patronNotas('nota2')) {
+                    if (!vacio('nota3') && patronNotas('nota3')) {
                         return true;
                     }
                 }
