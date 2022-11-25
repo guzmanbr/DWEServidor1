@@ -12,20 +12,20 @@
         }
         return false;
     }
-
-    function patronNotas($nombre){
-        $patron = '/^(\d|10)$/';
-        if (preg_match($patron, $_REQUEST[$nombre])) {
+    
+    function enviado(){
+        if (isset($_REQUEST['leer']) || isset($_REQUEST['editar']) || isset($_REQUEST['volver']) || isset($_REQUEST['modificar']) ) {
             return true;
+        }else {
+            return false;
         }
-        return false;
     }
 
-    function verificar(){
+    function valido(){
         if (enviado()) {
-            if (!vacio('nota1') && patronNotas('nota1')) {
-                if (!vacio('nota2') && patronNotas('nota2')) {
-                    if (!vacio('nota3') && patronNotas('nota3')) {
+            if (!vacio('nota1')) {
+                if (!vacio('nota2')) {
+                    if (!vacio('nota3')) {
                         return true;
                     }
                 }

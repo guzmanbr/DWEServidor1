@@ -13,7 +13,6 @@
     </head>
     <body>
         <?php
-            //si pulso volver abre ventana eligeFichero
             if (existe('volver')) {
                 header('Location: ./eligeFichero.php'); 
                 exit();
@@ -32,19 +31,15 @@
         <h2>Editar Fichero</h2>
         <form action="./editarFichero.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="fichero" value ="<? echo$_REQUEST["fichero"] ?>">
-            <textarea name="textArea" id="idArea" cols="40" rows="20"><?
-
+            <textarea name="textArea" id="idtextArea" cols="50" rows="40"><?
             if (!file_exists($_REQUEST['fichero'])){
-
                 if($abierto = fopen($_REQUEST['fichero'],'w')){
                     fclose($abierto);
-                }
-                
+                }          
             } else {
                 if($abierto = fopen($_REQUEST['fichero'],'r+')){
                     if (filesize($_REQUEST['fichero']) == 0){
                         echo "El fichero esta vacio escribe algo:";
-
                     } else {
                         while($linea = fgets($abierto,filesize($_REQUEST['fichero']))){
                             echo $linea;
@@ -55,10 +50,9 @@
                         echo $linea;
                     }
                 }
-
                 fclose($abierto);
             }
-                ?></textarea>
+            ?></textarea>
             <p>
                 <input type="submit" value="Modificar" name="modificar">
                 <input type="submit" value="Volver" name="volver">

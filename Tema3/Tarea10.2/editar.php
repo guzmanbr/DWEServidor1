@@ -3,127 +3,77 @@
 ?>
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../webrootTema3/css/estilos.css">
+        <title>Editar</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../webrootTema3/css/estilos.css">
-    <title>tabla notas</title>
-</head>
-
-<body>
-    <?php
-        $array_datos = array();
-        //Abrimos para leer el archivo
-        if (($open = fopen('notas.csv', 'r')) !== FALSE) {
-            while (($datos = fgetcsv($open, 0, ";")) !== FALSE) {
-                array_push($array_datos, $datos);
-            }
-            fclose($open);
-        }
-    ?>
-    <header>
-        <h1>PR10_2</h1>
-    </header>
-    <main>
+    <body>
         <?php
-            if (verificar()){
-                //Guardando las notas que modificamos
-                $array_datos[$_REQUEST['indice']][1]=$_REQUEST['nota1'];
-                $array_datos[$_REQUEST['indice']][2]=$_REQUEST['nota2'];
-                $array_datos[$_REQUEST['indice']][3]=$_REQUEST['nota3'];
-
-                //Volvemos a abrir el archivo para escribir 
-                if (($open = fopen('notas.csv', 'w')) !== FALSE) {
-                    foreach ($array_datos as $celda) {
-                            fputcsv($open, $celda, ";");
-                    }
+            $arrayNotas = array();
+            if (($fp = fopen('notas.csv', 'r')) !== false) {
+                while (($notas = fgetcsv($fp, 0, ";")) !== false) {
+                    array_push($arrayNotas, $notas);
                 }
-                fclose($open);
-
-                header('Location: ./tablaFichero.php');
-                exit();
-            }else{
-                
+                fclose($fp);
+            }
         ?>
-        <form action="./editar.php" method="post">
-            <!-- <?echo '<pre>',print_r($array_datos),'</pre>'?> -->
-            <!-- Nos ayuda a guardar la nueva informacion -->
-            <input type="hidden" name="indice" value="<?php
-                    echo $_REQUEST['indice'];
-            ?>">
-            <p>
-                <label for="idNombre">Nombre:</label><?php 
-                echo "<p>" . $array_datos[$_REQUEST['indice']][0] . "</p>";
-                ?>
-            </p>
-
+        <main>
+            <?php
+                if (valido()){
+                    $arrayNotas[$_REQUEST['indice']][1]=$_REQUEST['nota1'];
+                    $arrayNotas[$_REQUEST['indice']][2]=$_REQUEST['nota2'];
+                    $arrayNotas[$_REQUEST['indice']][3]=$_REQUEST['nota3'];
+                    if (($fp = fopen('notas.csv', 'w')) !== false) {
+                        foreach ($arrayNotas as $celda) {
+                            fputcsv($fp, $celda, ";");
+                        }
+                    }
+                    fclose($fp);
+                    header('Location: ./tablaFichero.php');
+                    exit();
+                } 
+            ?>
+            <form action="./editar.php" method="post">    
+                <input type="hidden" name="indice" value="<?php echo $_REQUEST['indice'];?>">
+                <p>
+                    <label for="idNombre">Nombre:</label><?php echo "<p>" . $arrayNotas[$_REQUEST['indice']][0] . "</p>"; ?>
+                </p>
                 <label for="idNota1">Nota 1:</label>
-                <input type="text" name="nota1" id="idNota1" value="<?php
-                    echo $array_datos[$_REQUEST['indice']][1]
-                ?>">
+                <input type="text" name="nota1" id="idNota1" value="<?php echo $arrayNotas[$_REQUEST['indice']][1] ?>">
                 <?
-                    //comprobar que no este vacio y es correcto, si lo está pongo un error
                     if (enviado()){
                         if (vacio("nota1")) {
-                            ?>
-                            <span style="color:brown"> Nota no introducida, revise</span>
-                            <?
-                        } elseif (!patronNotas('nota1')) {
-                            ?>
-                            <span style="color:brown"> Nota incorrecta, revise</span>
-                            <?
+                            ?><span>Nota no introducida, revise</span><?
                         }
                     } 
                 ?>
-
                 <label for="idNota2">Nota 2:</label>
-                <input type="text" name="nota2" id="idNota2" value="<?php
-                    echo $array_datos[$_REQUEST['indice']][2];
-                ?>">
+                <input type="text" name="nota2" id="idNota2" value="<?php echo $arrayNotas[$_REQUEST['indice']][2];?>">
                 <?
-                    //comprobar que no este vacio y es correcto, si lo está pongo un error
                     if (enviado()){
                         if (vacio("nota2")) {
-                            ?>
-                            <span style="color:brown"> Nota no introducida, revise</span>
-                            <?
-                        } elseif (!patronNotas('nota2')) {
-                            ?>
-                            <span style="color:brown"> Nota incorrecta, revise</span>
-                            <?
+                            ?><span>Nota no introducida, revise</span><?
                         }
                     } 
                 ?>
-
                 <label for="idNota3">Nota 3:</label>
-                <input type="text" name="nota3" id="idNota3" value="<?php
-                   echo $array_datos[$_REQUEST['indice']][3];
-                ?>">
+                <input type="text" name="nota3" id="idNota3" value="<?php echo $arrayNotas[$_REQUEST['indice']][3];?>">
                 <?
-                    //comprobar que no este vacio y es correcto, si lo está pongo un error
                     if (enviado()){
                         if (vacio("nota3")) {
-                            ?>
-                            <span style="color:brown"> Nota no introducida, revise</span>
-                            <?
-                        } elseif (!patronNotas('nota3')) {
-                            ?>
-                            <span style="color:brown"> Nota incorrecta, revise</span>
-                            <?
+                            ?><span>Nota no introducida, revise</span><?
                         }
                     } 
                 ?>
-            </p>
-            
-            <input type="submit" value="Guardar" name="guardar">
-        </form>
-        <?php
-        }
-        ?>
-    </main>
-</body>
+                
+                <input type="submit" value="Guardar" name="guardar">
+            </form>
+                    
+        </main>
+    </body>
 
 </html>

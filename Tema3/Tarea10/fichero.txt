@@ -1,5 +1,1 @@
-sfdgfd lorem
-asdssssss
-asdsaasdasdasd
-a
-o
+Fichero.txt
