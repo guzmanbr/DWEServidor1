@@ -9,7 +9,7 @@ include("../Fragmentos/Header/header.html");
     echo "<h5>a. Muestra el nombre del fichero que se está ejecutando.</h5> ".basename( __FILE__ );
     echo "<br><br>";
     //b
-    echo "<h5>b. Muestra la dirección IP del equipo desde el que estás accediendo.</h5>".$_SERVER['REMOTE_ADDR'];
+    echo "<h5>b. Muestra la dirección IP del equipo desde el que estás accediendo.</h5>".$_SERVER['REMOTE_ADDR'];///
     echo "<br><br>";
     //c
     echo "<h5>c. Muestra el path donde se encuentra el fichero que se está ejecutando.</h5>". __FILE__;
