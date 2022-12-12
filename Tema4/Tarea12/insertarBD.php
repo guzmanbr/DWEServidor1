@@ -1,5 +1,5 @@
 <?
-    require (../funcionesBD.php);
+    require("./validar.php");
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
                     <p>
                         <label for="idTitulo">Titulo pelicula: </label>
                         <input type="text" name="titulo" id="idTitulo" placeholder="Titulo" value="<? 
-                            if(enviado() && !vacio("fichero")){
+                            if(enviado() && !vacio("titulo")){
                                 echo $_REQUEST["titulo"];
                             }
                         ?>">
@@ -26,7 +26,9 @@
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
                         ?>
+                    </p>
 
+                    <p>
                         <label for="idFecha">Fecha estreno: </label>
                         <input type="text" name="fecha" id="idFecha" placeholder="Fecha" value="<? 
                             if(enviado() && !vacio("fecha")){
@@ -39,8 +41,9 @@
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
                         ?>
+                    </p>
 
-
+                    <p>
                         <label for="idPrecio">Precio pelicula: </label>
                         <input type="text" name="precio" id="idPrecio" placeholder="Precio" value="<? 
                             if(enviado() && !vacio("precio")){
@@ -53,7 +56,7 @@
                                 ?><span><--Debe rellenar este campo.</span><?
                             }
                         ?>
-
+                    </p>
                         <?php                    
                             if (enviado()) {
                                 if (existe('insertar')) {

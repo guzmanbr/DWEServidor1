@@ -7,7 +7,7 @@ require './Seguro/conexion.php';
     // $conexion = mysqli_connect(HOST,USER,PASS);
 
     try {
-        $conexion = mysqli_connect($_SERVER['SERVER_ADDR'],USER,PASS,'peliculasBD');
+        $conexion = mysqli_connect($_SERVER['SERVER_ADDR'],USER,PASS,'mundial');
 
         //Consultar la Base de Datos
         $sql = 'select * from equipo';

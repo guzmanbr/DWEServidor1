@@ -15,25 +15,39 @@
     <body>
         <h1>Peliculas</h1>
         <?php
+            $existeBD = true;
+            try {
+                $conexion = mysqli_connect(HOST,USER,PASS,'peliculasBD');
+
+                mostrarTabla($conexion);
+                echo "<br><br>";
+                echo "<a class='colorin' href='modificar.php?op=ins'>Insertar registro</a>";
+                
+            } catch (Exception $ex) {
+                if ($ex -> getCode() == 1045) {
+                    echo "<br>Error al configurar el usuario";
+                }
+                if ($ex -> getCode() == 2002) {
+                    echo "<br>Error al configurar el host";
+                }      
+                if ($ex->getCode()==1049){
+                    $existeBD = false; 
+                    echo "No existe la base de datos";
+                }      
+            }
         ?>
-        <form action="./editaXML.php" method="POST">
-            <input type="<?
-            //Si existe la BD el boton estara oculto
-            if (condition) {
-                echo "hidden";
-            }else{
-                //Si ni existe se mostrara
-                echo "button";
-            }?>" name="crearBD" value="Crear base">
 
-            <p>
-                <label for="idAlumno">Alumno: </label>
-                <?php
-                    echo " ". $notas->children()[intval($_REQUEST['indice'])]->children()[0];
-                ?>
-            </p>
+        <input type="<?
+        //Si existe la BD el boton estara oculto
+        if ($existeBD) {
+            echo "hidden";
+        }else{
+            //Si ni existe se mostrara
+            echo "button";
+        }?>" name="crearBD" value="Crear base">
 
-            
-        </form>
+
+
+
     </body>
 </html>

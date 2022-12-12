@@ -14,20 +14,10 @@ require './conexionBD.php';
     
             echo mysqli_connect_errno();
             echo mysqli_connect_error();
-
-            // if ($ex -> getCode() == 1045) {
-            //     echo $ex;
-            //     echo "<br>Error al configurar el usuario";
-            // }
-            
-            // if ($ex -> getCode() == 2002) {
-            //     echo $ex;
-            //     echo "<br>Error al configurar el host";
-            // }
         }
     }
 
-    function mostrarTabla(){
+    function mostrarTabla($conexion){
         $sql = 'select * from peliculasBD';
 
         $resultado = mysqli_query($conexion, $sql);
@@ -204,35 +194,7 @@ require './conexionBD.php';
 
 
 
-// TRANSACCIONES
 
-    // Consulta Preparada Insert con Transacción
-        try {
-            $conexion = mysqli_connect($_SERVER['SERVER_ADDR'],USER,PASS,'mundial');
-
-            // Insertamos 3 equipos y al último le ponemos mal el id
-            mysqli_autocommit($conexion, false);
-            $sql = 'insert into equipo values(4, \'Alemania\');';
-            $sql1 = 'insert into equipo values(5, \'Rusia\');';
-            $sql2 = 'insert into equipo values(5, \'Brasil\');';
-
-            echo "<br>";
-            mysqli_query($conexion,$sql);
-            mysqli_query($conexion,$sql1);
-            mysqli_query($conexion,$sql2);
-            mysqli_commit($conexion);
-
-        } catch (Exception $ex) {
-
-            echo mysqli_connect_errno();
-            echo mysqli_connect_error();
-            echo " " .$ex -> getMessage();
-
-            mysqli_rollback($conexion);
-        
-        } finally {
-            mysqli_close($conexion);
-        }
 
 
 
