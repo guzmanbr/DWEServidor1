@@ -1,20 +1,68 @@
 <?php
 
-require './Seguro/conexion.php';
+require './conexionBD.php';
 
 // Conexión con Funciones
 
     // $conexion = mysqli_connect(HOST,USER,PASS);
 
+
+    function conectar(){
+        try {
+            $conexion = mysqli_connect($_SERVER['SERVER_ADDR'],USER,PASS,'peliculasBD');
+        } catch (Exception $ex) {
+    
+            echo mysqli_connect_errno();
+            echo mysqli_connect_error();
+
+            // if ($ex -> getCode() == 1045) {
+            //     echo $ex;
+            //     echo "<br>Error al configurar el usuario";
+            // }
+            
+            // if ($ex -> getCode() == 2002) {
+            //     echo $ex;
+            //     echo "<br>Error al configurar el host";
+            // }
+        }
+    }
+
+    function mostrarTabla(){
+        $sql = 'select * from peliculasBD';
+
+        $resultado = mysqli_query($conexion, $sql);
+
+        while ($row = $resultado -> fetch_array()) {
+            print_r($row);
+            echo "<br>";
+        }
+    }
+
+    function insertarRegistro(){
+        $sql = 'select * from peliculasBD';
+
+        $resultado = mysqli_query($conexion, $sql);
+
+        while ($row = $resultado -> fetch_array()) {
+            print_r($row);
+            echo "<br>";
+        }
+    }
+
+
+
     try {
         $conexion = mysqli_connect($_SERVER['SERVER_ADDR'],USER,PASS,'peliculasBD');
 
-        //Consultar la Base de Datos
+        // Consultar la Base de Datos
         $sql = 'select * from equipo';
 
         $resultado = mysqli_query($conexion, $sql);
 
-        echo "<br><b>Array<br>";
+        // echo "<br><b>All</b><br>";
+        //print_r($resultado -> fetch_all());
+
+        echo "<br><br><b>Array</b><br>";
         // print_r($resultado -> fetch_array());
         // print_r($resultado -> fetch_array());
         // print_r($resultado -> fetch_array());
@@ -185,4 +233,40 @@ require './Seguro/conexion.php';
         } finally {
             mysqli_close($conexion);
         }
+
+
+
+//Funciones formulario----------------------------------------
+
+
+    //funcion para saber si el texto esta vacio
+    function vacio($nombre){
+        if (empty($_REQUEST[$nombre])) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //funcion para comprobar que se ha pulsado leer o editar
+    function enviado(){
+        if (isset($_REQUEST['insertar'])) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    //funcion para comprobar si existe
+    function existe($nombre){
+        if (isset($_REQUEST[$nombre])) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
 ?>
+
+
