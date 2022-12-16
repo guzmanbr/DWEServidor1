@@ -1,29 +1,21 @@
 body{
   background-color: black;
   font-family: "helvetica neue";
-  background: url(../img/fondo.png),linear-gradient(to left, #180102, #000000);
+  background: url(../img/fondo.png),linear-gradient(to left, #b0afaf, #969696);
   color: white;
-}
-
-header{
-  margin: auto;
-  height: fit-content;
 }
 
 nav{
 margin: auto;
 display: flex;
+justify-content: center;
+align-items: center;
 background-color: rgba(0, 0, 0, 0.829);
 opacity: 85%;
-width: 80%;
+width: 90%;
 border-radius: 5px;
 padding-top: 20px;
 padding-bottom: 20px;
-}
-h1{
-text-align: center;
-color: whitesmoke;
-font-size: 35px;
 }
 
 h3{
@@ -31,39 +23,30 @@ text-align: center;
 color: white;
 padding: 3px;
 border-radius: 6px;
-border: solid white 2px;
+border: solid white;
 width: 70px;
 }
+
 a {
 text-decoration: none;
 margin-right: 40px;
-background-color: #0000006b;
-}
-a:nth-child(1){
-margin-left: 50px;
+width: fit-content;
+height: fit-content;
 }
 
-footer{
-margin: auto;
-background-color: rgba(0, 0, 0, 0.829);
-opacity: 85%;
-width: 80%;
-height: 50px;
-border-radius: 5px;
-padding-top: 20px;
-padding-bottom: 20px;
-margin-top: 50px;
-text-align: center;
+nav a:nth-child(4) h3{
+  background-color: rgba(11, 11, 11, 0.986);
+  padding: 8px;;
 }
+
 
 main{
   margin: auto;
   display: flex;
 }
 #container{
-  background-color: rgba(0, 0, 0, 0.699);
-  border-radius: 6px;
-  border: solid 1px #180102;
+
+
   margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -77,11 +60,8 @@ main{
   padding: 5px;
   border-radius: 4px;
   border: solid 1px white;
-  text-decoration: none;
-  color: white;
-}
-#container a:hover{
   text-decoration: underline;
+  color: white;
 }
 
 #tareas{
@@ -96,7 +76,6 @@ margin: auto;
 h2{
   text-align: center;
 }
-
 ul{
   margin-top:90px ;
 }
@@ -106,25 +85,20 @@ li{
 a:visited{
   color: white;
 }
-a:hover{
-  text-decoration: underline;
-}
 .codigo:hover{
   font-size: 15px;
 }
-.codigo{
-  color: white;
-}
 
-.divForm{
-  display: flex;
-} 
-form{
+
+footer{
   margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-textarea{
-  width: 350px;
-  height:150px;
-}
+  background-color: rgba(0, 0, 0, 0.829);
+  opacity: 85%;
+  width: 80%;
+  height: 50px;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 50px;
+  text-align: center;
+  }

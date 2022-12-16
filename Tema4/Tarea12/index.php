@@ -17,7 +17,7 @@
         <?php
             $existeBD = true;
             try {
-                $conexion = mysqli_connect(HOST,USER,PASS,'peliculasBD');
+                $conexion = mysqli_connect($_SERVER['SERVER_ADDR'],USER,PASS);
                 mostrarTabla($conexion);
                 echo "<br><br>";
                 echo "<a href='insertarBD.php?op=ins'>Insertar registro</a>";

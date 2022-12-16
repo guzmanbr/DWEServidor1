@@ -36,15 +36,11 @@ require './conexionBD.php';
 
     try {
         $conexion = mysqli_connect($_SERVER['SERVER_ADDR'],USER,PASS,'peliculasBD');
-
         // Consultar la Base de Datos
         $sql = 'select * from equipo';
-
         $resultado = mysqli_query($conexion, $sql);
-
         // echo "<br><b>All</b><br>";
         //print_r($resultado -> fetch_all());
-
         echo "<br><br><b>Array</b><br>";
         // print_r($resultado -> fetch_array());
         // print_r($resultado -> fetch_array());
@@ -55,22 +51,10 @@ require './conexionBD.php';
         }
 
         mysqli_close($conexion);
-
-
     } catch (Exception $ex) {
 
         echo mysqli_connect_errno();
         echo mysqli_connect_error();
-        
-        // if ($ex -> getCode() == 1045) {
-        //     echo $ex;
-        //     echo "<br>Error al configurar el usuario";
-        // }
-        
-        // if ($ex -> getCode() == 2002) {
-        //     echo $ex;
-        //     echo "<br>Error al configurar el host";
-        // }
     }
 
     echo "";
