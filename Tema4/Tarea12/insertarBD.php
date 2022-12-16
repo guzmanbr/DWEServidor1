@@ -59,7 +59,7 @@
                     </p>
                         <?php                    
                             if (enviado()) {
-                                if (existe('insertar')) {
+                                if (existe('insertar') && validarTodo()) {
                                     header('Location: ./index.php'); 
                                     exit();
                                 }

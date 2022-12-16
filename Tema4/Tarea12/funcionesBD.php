@@ -29,14 +29,7 @@ require './conexionBD.php';
     }
 
     function insertarRegistro(){
-        $sql = 'select * from peliculasBD';
-
-        $resultado = mysqli_query($conexion, $sql);
-
-        while ($row = $resultado -> fetch_array()) {
-            print_r($row);
-            echo "<br>";
-        }
+ 
     }
 
 

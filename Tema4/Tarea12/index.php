@@ -18,10 +18,9 @@
             $existeBD = true;
             try {
                 $conexion = mysqli_connect(HOST,USER,PASS,'peliculasBD');
-
                 mostrarTabla($conexion);
                 echo "<br><br>";
-                echo "<a class='colorin' href='modificar.php?op=ins'>Insertar registro</a>";
+                echo "<a href='insertarBD.php?op=ins'>Insertar registro</a>";
                 
             } catch (Exception $ex) {
                 if ($ex -> getCode() == 1045) {
