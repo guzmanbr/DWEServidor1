@@ -8,5 +8,14 @@ require_once('./modelo/Usuario.php');
 require_once('./dao/UsuarioDAO.php');
 
 //Controladores
-
+$controladores = array(
+    'login'=>'loginController.php'
+);
 //Vistas
+$vista = array(
+    'home'=>'homeView.php',
+    'login'=>'loginView.php'
+);
+
+//Funciones
+require_once('./core/funcionesSesiones.php');
