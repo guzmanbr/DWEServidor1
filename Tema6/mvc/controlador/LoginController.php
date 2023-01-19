@@ -15,5 +15,14 @@ if (empty($user)) {
     exit;
 
 } else{
-    //valida
+    $usuario = UsuarioDAO::valida($user,$pass);
+    if ($usuario != null) {
+        $_SESSION['validado'] = true;
+        $_SESSION['user'] = $user;
+        $_SESSION['nombre'] = $usuario->nombre;
+        $_SESSION['perfil'] = $usuario->perfil;
+        $_SESSION['vista'] = $vistas['home'];
+        $_SESSION['controlador'] = './controlador/UserController.php';
+        // unset($_SESSION['controlador']);
+    }
 }

@@ -9,12 +9,13 @@ require_once('./dao/UsuarioDAO.php');
 
 //Controladores
 $controladores = array(
-    'login'=>'loginController.php'
+    'login'=>'./controlador/LoginController.php'
 );
 //Vistas
-$vista = array(
+$vistas = array(
     'home'=>'homeView.php',
-    'login'=>'loginView.php'
+    'login'=>'loginView.php',
+    'user'=>'UserView.php'
 );
 
 //Funciones
