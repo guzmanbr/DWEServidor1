@@ -5,5 +5,5 @@ interface DAO{
     public static function findById($id);
     public static function delete($id);
     public static function insert($objeto);
-    public static function update($objeto);//public function update($id,$objeto);
+    public static function update($objeto);
 }

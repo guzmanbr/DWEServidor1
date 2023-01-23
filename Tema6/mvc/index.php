@@ -1,45 +1,41 @@
-<?php
-    require './config/configuracion.php';
-    
-    session_start();
+<?
 
+require './config/configuracion.php';
 
-    if (isset($_REQUEST['logout'])) {
-        session_destroy();
-    }
+session_start();
 
-    //si no tiene una vitsta guardada en la sesion
+if (isset($_REQUEST['logout'])) {
+    session_destroy();
+    $_SESSION['controlador'] = $controladores['login'];
+    $_SESSION['vista'] = $vistas['login'];
+    $_SESSION['pagina'] = 'login';
+    header('Location: ./index.php');
+    exit;
+} else {
 
-    if (estaValidado() && !isset($_SESSION['vista'])) {
+    //si no tiene una vista 
+    ///guardad en la sesion va a home
+    if (estaValidado() && !isset($_SESSION['pagina']))
         $_SESSION['vista'] = $vistas['home'];
-    }
-    //si ha pulsado login
-    elseif((!estaValidado() && isset($_SESSION['pagina']) )|| isset($_SESSION['login'])) {  
-        $_SESSION['pagina']= 'login';
-        $_SESSION['controlador']= $controladores['login'];
+    //si ha pulsado login 
+    elseif ((!estaValidado() && !isset($_SESSION['pagina'])) || isset($_REQUEST['login'])) {
+        $_SESSION['pagina'] = 'login';
+        $_SESSION['controlador'] = $controladores['login'];
         $_SESSION['vista'] = $vistas['login'];
-    }
-    elseif (isset($_SESSION['pagina'])) {
+    } elseif (isset($_SESSION['pagina'])) {
+
+        if (esAdmin() && isset($_REQUEST['admin'])) {
+            $_SESSION['controlador'] = $controladores['admin'];
+            $_SESSION['pagina'] = 'admin';
+            $_SESSION['vista'] = $vistas['admin'];
+            require_once $_SESSION['controlador'];
+        }else {
+        
+        }
+
         require_once $_SESSION['controlador'];
     }
-
-    require_once('./vista/layout.php');
-
+}
 
 
-//     $arrayUsuarios = UsuarioDAO::findAll();
-//     //print_r($arrayUsuarios);
-//     $findbyId = UsuarioDAO::findById('u1d');
-//     print_r($findbyId);
-//     $usuario = new Usuario('maria',sha1('maria'),'maria','maria@gmail.com','ADM01');
-//     //UsuarioDAO::insert($usuario);
-//     $usuario -> nombre = 'pepito';
-//     if(!UsuarioDAO::update($usuario)){
-//         echo "No se ha modificado";
-//     }
-//     if(!UsuarioDAO::delete($usuario->usuario)){
-//         echo "No se ha modificado";
-//     }
-
-
-?>
+require_once('./vista/layout.php');
