@@ -1,7 +1,6 @@
 <?
-    require_once './dao/FactoryBD.php';
-    require_once './dao/DAO.php';
-    
+    //require_once './FactoryBD.php';
+
     class ConciertoDAO extends FactoryBD implements DAO{
         
         public static function findAll(){
@@ -42,8 +41,8 @@
             
         }
         public static function findByFechaOrder($fecha,$orden){
-            $sql='select * from conciertos where fecha > ? order by fecha '.$orden;
-            $datos=array($fecha);
+            $sql='select * from conciertos where fecha > '.$fecha.' order by fecha '.$orden;
+            $datos=array();
             $devuelve = parent::ejecuta($sql,$datos);
             $arrayCociertos=$devuelve->fetchAll(PDO::FETCH_ASSOC);
             return $arrayCociertos;
@@ -62,13 +61,12 @@
         }
 
         public static function insert($objeto){
-            $sql='insert into conciertos values (?,?,?,?,?)';
+            $sql='insert into conciertos values (null,?,?,?,?)';
             $objeto=(array)$objeto;
             $datos=array();
             foreach ($objeto as $att) {
                 array_push($datos,$att);
             }
-            $datos[0]=null;
             $devuelve=parent::ejecuta($sql,$datos);
             if ($devuelve->rowCount()==0){
                 return false;
